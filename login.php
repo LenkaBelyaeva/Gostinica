@@ -7,7 +7,11 @@ use Model\Klient;
 $klient = new Klient();
 
 if (!$_POST == []):
-    $klient->login($_POST);
+    if ($klient->login($_POST)){
+        header('Location: http://Gostinica/', true, 301);
+        exit();
+    } else
+        $validate = true;
 endif;
 ?>
 
@@ -56,6 +60,11 @@ endif;
 </header>
 
 <div align="center">
+    <?php if (!empty($validate) && $validate == true): ?>
+        <div class="alert alert-danger" role="alert">
+          Неверный логин или пароль
+        </div>
+    <?php endif; ?>
     <form style="margin-top: 20px" class="container form" action="" method="post">
         <label class="form-label" style="font-size: 30px" for="login">Логин</label>
         <input style="width: 500px" class="form-control" type="text" id="login" name="login">

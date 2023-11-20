@@ -31,7 +31,7 @@ class Nomer
         $nomer = mysqli_query((new Config())->connectMySql(), $query);
 
         if ($nomer) {
-            header('Location: http://caitkyrsovik/', true, 301);
+            header('Location: http://Gostinica/', true, 301);
             exit();
         } else {
             die('Not Done');

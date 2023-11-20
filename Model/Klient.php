@@ -19,13 +19,14 @@ class Klient
 
         $query = mysqli_query((new Config())->connectMySql(), $query);
 
-        if ($query) {
+        $query = mysqli_fetch_array($query);
+
+        if (!empty($query)) {
             session_start();
-            $_SESSION['id_user'] = mysqli_fetch_array($query)['id'];
-            header('Location: http://caitkyrsovik/', true, 301);
-            exit();
+            $_SESSION['id_user'] = $query['id'];
+            return true;
         } else {
-            die('Not done');
+            return false;
         }
     }
 
@@ -49,7 +50,7 @@ class Klient
     {
         $_SESSION['id_user'] = null;
 
-        header('Location: http://caitkyrsovik/', true, 301);
+        header('Location: http://Gostinica/', true, 301);
         exit();
     }
 }

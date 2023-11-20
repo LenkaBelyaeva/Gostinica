@@ -11,8 +11,6 @@ $nomer = new Nomer();
 $klient = new Klient();
 
 $nomera = $nomer->getAllNomers();
-
-var_dump($_SESSION['id_user']);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
