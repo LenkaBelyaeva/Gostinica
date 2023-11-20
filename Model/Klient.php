@@ -30,6 +30,27 @@ class Klient
         }
     }
 
+    public function register($request): bool
+    {
+        require_once(self::DB);
+
+        if (!empty($this->findKlientByLogin($request['login']))) {
+            return false;
+        } else {
+            $query = 'insert into klient (first_name, last_name, patronymic, phone, login, password) 
+                        values ("' . $request['first_name'] . '","' . $request['last_name'] . '","' . $request['patronymic'] . '","' . $request['phone'] . '","' . $request['login'] . '","' . $request['password'] . '")';
+
+            $query = mysqli_query((new Config())->connectMySql(), $query);
+
+            if ($query) {
+                if ($this->login($request)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     public function findKlient($id)
     {
         require_once(self::DB);
@@ -43,6 +64,21 @@ class Klient
             return $klient = mysqli_fetch_array($query);
         } else {
             die('Not Done');
+        }
+    }
+
+    public function findKlientByLogin($login)
+    {
+        require_once(self::DB);
+
+        $query = 'select * from klient
+                    where login = "' . $login . '"';
+
+        if (mysqli_query((new Config())->connectMySql(), $query)) {
+            $query = mysqli_query((new Config())->connectMySql(), $query);
+            return $klient = mysqli_fetch_array($query);
+        } else {
+            return 0;
         }
     }
 

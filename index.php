@@ -51,7 +51,7 @@ $nomera = $nomer->getAllNomers();
                 <a href="login.php">
                     <button style="cursor: pointer">Войти</button>
                 </a>
-                <a style="cursor: pointer" href="">
+                <a style="cursor: pointer" href="register.php">
                     <button style="cursor: pointer">Регистрация</button>
                 </a>
             <?php

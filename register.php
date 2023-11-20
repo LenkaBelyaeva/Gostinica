@@ -7,7 +7,7 @@ use Model\Klient;
 $klient = new Klient();
 
 if (!$_POST == []):
-    if ($klient->login($_POST)) {
+    if ($klient->register($_POST)) {
         header('Location: http://Gostinica/', true, 301);
         exit();
     } else {
@@ -64,11 +64,23 @@ endif;
     <?php
     if (!empty($validate) && $validate == true): ?>
         <div class="alert alert-danger" role="alert">
-            Неверный логин или пароль
+            Такой логин существует
         </div>
     <?php
     endif; ?>
     <form style="margin-top: 20px" class="container form" action="" method="post">
+        <label class="form-label" style="font-size: 30px" for="last_name">Фамилия</label>
+        <input style="width: 500px" class="form-control" type="text" id="last_name" name="last_name">
+
+        <label class="form-label" style="font-size: 30px" for="first_name">Имя</label>
+        <input style="width: 500px" class="form-control" type="text" id="first_name" name="first_name">
+
+        <label class="form-label" style="font-size: 30px" for="patronymic">Отчество</label>
+        <input style="width: 500px" class="form-control" type="text" id="patronymic" name="patronymic">
+
+        <label class="form-label" style="font-size: 30px" for="phone">Номер телефона</label>
+        <input style="width: 500px" class="form-control" type="text" id="phone" name="phone">
+
         <label class="form-label" style="font-size: 30px" for="login">Логин</label>
         <input style="width: 500px" class="form-control" type="text" id="login" name="login">
 
