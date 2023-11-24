@@ -8,18 +8,12 @@ $nomer = new Nomer();
 
 $uploaddir = '../img/';
 
-if (!empty($_POST)){
-    if ($_FILES['file']['name'] != '') {
-        $uploadfile = $uploaddir . $_FILES['file']['name'];
+if (count($_FILES) != 0) {
+    $uploadfile = $uploaddir . $_FILES['file']['name'];
 
-        move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
+    move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
 
-        $nomer->addNomer($_POST, $uploadfile);
-    } else {
-        $uploadfile = '../img/notfoundPhoto.jpg';
-
-        $nomer->addNomer($_POST, $uploadfile);
-    }
+    $nomer->addNomer($_POST, $uploadfile);
 }
 
 ?>
