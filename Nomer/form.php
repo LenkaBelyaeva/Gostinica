@@ -1,12 +1,12 @@
 <?php
 
-require_once('..\aotuload.php');
+require_once('../autoload/autoloadForInFile.php');
 
 use Model\Nomer;
 
 $nomer = new Nomer();
 
-$uploaddir = './img/';
+$uploaddir = '../img/';
 
 if (count($_FILES) != 0) {
     $uploadfile = $uploaddir . $_FILES['file']['name'];
@@ -27,8 +27,28 @@ if (count($_FILES) != 0) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
               crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/styles.css">
     </head>
     <body class="container">
+
+    <header>
+        <div class="container" id="glavnai">
+            <div class="logo">
+                <a href="../view/admin.php"><img src="../img/logo.jpg" alt="Grand Atlee"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../view/admin.php">Номера</a></li>
+                    <li><a href="#">Заброненные номера</a></li>
+                    <li><a href="../view/logout.php">Выход</a></li>
+                </ul>
+            </nav>
+            <div class="header_contacts">
+                <a href="#">+7 (910) 018-35-44</a>
+                <p>Обратная связь</p>
+            </div>
+        </div>
+    </header>
     <form class="form" action="" method="post" enctype="multipart/form-data">
 
         <div class="md-3">

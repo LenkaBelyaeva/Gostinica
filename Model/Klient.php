@@ -2,18 +2,14 @@
 
 namespace Model;
 
-require_once('./aotuload.php');
+require_once('../autoload/autoloadForInFile.php');
 
 use \Config;
 
 class Klient
 {
-    const DB = '.\config.php';
-
     public function login($request)
     {
-        require_once(self::DB);
-
         $query = 'select * from klient
                     where login = "' . $request['login'] . '" and password = "' . $request['password'] . '"';
 
@@ -24,6 +20,32 @@ class Klient
         if (!empty($query)) {
             session_start();
             $_SESSION['id_user'] = $query['id'];
+            if ($query['login'] == 'admin'){
+                header('Location: http://Gostinica/view/admin.php', true, 301);
+                exit();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function loginById($id)
+    {
+        $query = 'select * from klient where id = '.$id;
+
+        $query = mysqli_query((new Config())->connectMySql(),$query);
+
+        $query = mysqli_fetch_array($query);
+
+        if (!empty($query))
+        {
+            session_start();
+            $_SESSION['id_user'] = $query['id'];
+            if ($query['login'] == 'admin'){
+                header('Location: http://Gostinica/view/admin.php', true, 301);
+                exit();
+            }
             return true;
         } else {
             return false;
@@ -53,8 +75,6 @@ class Klient
 
     public function findKlient($id)
     {
-        require_once(self::DB);
-
         $query = 'select * from klient
                     where id = ' . $id;
 
@@ -69,8 +89,6 @@ class Klient
 
     public function findKlientByLogin($login)
     {
-        require_once(self::DB);
-
         $query = 'select * from klient
                     where login = "' . $login . '"';
 
