@@ -3,9 +3,11 @@
     require_once('../autoload/autoloadForInFile.php');
 
     use Model\Nomer;
+    use Model\Klient;
+    use Model\Bronirovanie;
 
-    $nomer = new Nomer();
-    $nomer = $nomer->getAllNomers();
+    $nomer = new Bronirovanie();
+    $nomer = $nomer->getAllBron();
 ?>
 
 <!doctype html>
@@ -30,9 +32,9 @@
         </div>
         <nav>
             <ul>
-                <li><a href="admin.php">Номера</a></li>
-                <li><a href="../admin/ListBron.php">Заброненные номера</a></li>
-                <li><a href="logout.php">Выход</a></li>
+                <li><a href="../view/admin.php">Номера</a></li>
+                <li><a href="ListBron.php">Заброненные номера</a></li>
+                <li><a href="../view/logout.php">Выход</a></li>
             </ul>
         </nav>
         <div class="header_contacts">
@@ -44,35 +46,23 @@
 
 <div class="container" style="margin-top: 50px">
 
-    <a href="../Nomer/form.php"><button class="btn btn-success">Добавить номер</button></a>
-
     <table class="table">
         <tr>
+            <th class="col">Фамилия</th>
             <th class="col">Имя</th>
-            <th class="col">Номер</th>
-            <th class="col">Этаж</th>
-            <th class="col">Стоимость</th>
-            <th class="col">Путь фото</th>
+            <th class="col">Название номера</th>
+            <th class="col">Заезд</th>
+            <th class="col">Выезд</th>
+            <th class="col">Общая сумма</th>
         </tr>
         <?php while ($value = mysqli_fetch_array($nomer)): ?>
             <tr>
+                <td><?= $value['last_name'] ?></td>
+                <td><?= $value['first_name'] ?></td>
                 <td><?= $value['name'] ?></td>
-                <td><?= $value['nomer'] ?></td>
-                <td><?= $value['etagh'] ?></td>
-                <td><?= $value['nomer_summa'] ?></td>
-                <td><?= $value['img'] ?></td>
-                <td>
-                    <form action="#" method="get">
-                        <input type="hidden" name="id" value="<?= $value['id'] ?>">
-                        <button class="btn btn-primary" type="submit">Изменить</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="../Nomer/delete.php" method="post">
-                        <input type="hidden" name="id" value="<?= $value['id'] ?>">
-                        <button class="btn btn-danger" type="submit">Удалить</button>
-                    </form>
-                </td>
+                <td><?= $value['zaezd'] ?></td>
+                <td><?= $value['viezd'] ?></td>
+                <td><?= $value['stoimost'] ?></td>
             </tr>
         <?php endwhile; ?>
     </table>

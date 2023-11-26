@@ -162,7 +162,10 @@ $nomera = $nomer->getAllNomers();
                             <input type="hidden" name="id" value="<?= $value['id'] ?>">
                             <?php
                             if (!empty($_SESSION['id_user'])): ?>
-                                <button type="submit">Забронировать</button>
+                                <form action="../Bronirovanie/add.php" method="post">
+                                    <input type="hidden" name="id_nomer" value="<?= $value['id'] ?>">
+                                    <button type="submit">Забронировать</button>
+                                </form>
                             <?php
                             endif; ?>
                         </form>
@@ -179,7 +182,10 @@ $nomera = $nomer->getAllNomers();
                             <p class="agent-name"><?= $value['nomer_summa'] . 'Р' ?></p>
                             <?php
                             if (!empty($_SESSION['id_user'])): ?>
-                                <button type="submit">Забронировать</button>
+                                <form action="../Bronirovanie/add.php" method="post">
+                                    <input type="hidden" name="id_nomer" value="<?= $value['id'] ?>">
+                                    <button type="submit">Забронировать</button>
+                                </form>
                             <?php
                             endif; ?>
                         </div>

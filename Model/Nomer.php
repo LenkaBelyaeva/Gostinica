@@ -19,6 +19,15 @@ class Nomer
         return $nomer;
     }
 
+    public function getNomerById($id)
+    {
+        $query = 'select * from nomer where id = '.$id;
+
+        $nomer = mysqli_query((new Config())->connectMySql(),$query);
+
+        return $nomer = mysqli_fetch_array($nomer);
+    }
+
     public function addNomer($request, $fileUrl)
     {
         $query = 'insert into nomer (`name`, nomer, etagh, nomer_summa, img)
