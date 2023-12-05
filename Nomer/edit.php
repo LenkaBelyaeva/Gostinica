@@ -6,14 +6,19 @@ use Model\Nomer;
 
 $nomer = new Nomer();
 
+$nomer = $nomer->getNomerById($_GET['id']);
+
 $uploaddir = '../img/';
 
-if (count($_FILES) != 0) {
-    $uploadfile = $uploaddir . $_FILES['file']['name'];
+if (!empty($_POST)){
+    if ($_FILES['file']['name'] != '') {
+        $uploadfile = $uploaddir . $_FILES['file']['name'];
 
-    move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
-
-    $nomer->addNomer($_POST, $uploadfile);
+        move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile);
+        (new Nomer())->updateNomerTogetherImg($_POST, $uploadfile);
+    } else {
+        (new Nomer())->updateNomer($_POST);
+    }
 }
 
 ?>
@@ -51,30 +56,37 @@ if (count($_FILES) != 0) {
     </header>
     <form class="form" action="" method="post" enctype="multipart/form-data">
 
+        <input type="hidden" name="idNomer" value="<?= $_GET['id'] ?>">
+
         <div class="md-3">
             <label class="form-label" for="nameNomer">Название номера</label>
-            <input class="form-control" type="text" name="nameNomer" id="nameNomer" required autofocus>
+            <input class="form-control" type="text" name="nameNomer" id="nameNomer" value="<?= $nomer['name'] ?>" required autofocus>
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="nomer">Номер</label>
-            <input class="form-control" type="text" name="nomer" id="nomer" required>
+            <input class="form-control" type="text" name="nomer" id="nomer" value="<?= $nomer['nomer'] ?>" required>
         </div>
 
         <div class="md-3">
             <label class="form-label" for="etagh">Этаж</label>
-            <input class="form-control" type="number" min="1" max="3" name="etagh" id="etagh" required>
+            <input class="form-control" type="number" min="1" max="3" name="etagh" id="etagh" value="<?= $nomer['etagh'] ?>" required>
         </div>
 
         <div class="md-3">
             <label class="form-label" for="summa">Сумма</label>
-            <input class="form-control" type="number" min="0" max="10000" name="summa" id="summa" required>
+            <input class="form-control" type="number" min="0" max="10000" name="summa" value="<?= $nomer['nomer_summa'] ?>" id="summa" required>
         </div>
 
+        <label for="gg">Фото, которое стоит</label>
+        <img src="<?= $nomer['img'] ?>" width="150" height="100" alt="" id="gg">
+        <input type="hidden" value="<?= $nomer['img'] ?>" name="imgSrc">
+
         <div class="md-3">
-            <label class="form-label" for="file">Файл</label>
+            <label class="form-label" for="file">Другое фото</label>
             <input class="form-control" type="file" name="file" id="file">
         </div>
+
 
         <div style="margin-top: 20px" align="center" class="md-3">
             <button class="btn btn-success" type="submit">Отправить</button>

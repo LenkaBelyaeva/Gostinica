@@ -21,9 +21,9 @@ class Nomer
 
     public function getNomerById($id)
     {
-        $query = 'select * from nomer where id = '.$id;
+        $query = 'select * from nomer where id = ' . $id;
 
-        $nomer = mysqli_query((new Config())->connectMySql(),$query);
+        $nomer = mysqli_query((new Config())->connectMySql(), $query);
 
         return $nomer = mysqli_fetch_array($nomer);
     }
@@ -43,18 +43,63 @@ class Nomer
         }
     }
 
-    public function deleteNomer($id){
+    public function updateNomerTogetherImg($request, $img)
+    {
+        $query = 'update nomer
+                  set
+                    name = "' . $request['nameNomer'] . '",
+                    nomer = "' . $request['nomer'] . '",
+                    etagh = ' . $request['etagh'] . ',
+                    nomer_summa = ' . $request['summa'] . ',
+                    img = "'.$img.'"
+                    
+                where id = '.$request['idNomer'];
+
+        $nomer = mysqli_query((new Config())->connectMySql(),$query);
+
+        if ($nomer) {
+            header('Location: http://Gostinica/view/admin.php', true, 301);
+            exit();
+        } else {
+            die('Not Done');
+        }
+    }
+
+    public function updateNomer($request)
+    {
+        $query = 'update nomer
+                  set
+                    name = "' . $request['nameNomer'] . '",
+                    nomer = "' . $request['nomer'] . '",
+                    etagh = ' . $request['etagh'] . ',
+                    nomer_summa = ' . $request['summa'] . '
+                    
+                where id = '.$request['idNomer'];
+
+        $nomer = mysqli_query((new Config())->connectMySql(),$query);
+
+        if ($nomer) {
+            header('Location: http://Gostinica/view/admin.php', true, 301);
+            exit();
+        } else {
+            die('Not Done');
+        }
+    }
+
+    public function deleteNomer($id)
+    {
         $klient = new Klient();
 
         $query = 'delete from nomer
-                    where id = '.$id;
+                    where id = ' . $id;
 
         $nomer = mysqli_query((new Config())->connectMySql(), $query);
 
-        if ($query){
+        if ($query) {
             header('Location: http://Gostinica/view/admin.php', true, 301);
             exit();
-        } else
+        } else {
             die('not done');
+        }
     }
 }

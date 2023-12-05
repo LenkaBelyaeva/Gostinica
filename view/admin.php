@@ -52,7 +52,7 @@
             <th class="col">Номер</th>
             <th class="col">Этаж</th>
             <th class="col">Стоимость</th>
-            <th class="col">Путь фото</th>
+            <th class="col">Фото</th>
         </tr>
         <?php while ($value = mysqli_fetch_array($nomer)): ?>
             <tr>
@@ -60,9 +60,9 @@
                 <td><?= $value['nomer'] ?></td>
                 <td><?= $value['etagh'] ?></td>
                 <td><?= $value['nomer_summa'] ?></td>
-                <td><?= $value['img'] ?></td>
+                <td><img src="<?= $value['img'] ?>" width="150" height="100" alt=""></td>
                 <td>
-                    <form action="#" method="get">
+                    <form action="../Nomer/edit.php" method="get">
                         <input type="hidden" name="id" value="<?= $value['id'] ?>">
                         <button class="btn btn-primary" type="submit">Изменить</button>
                     </form>
