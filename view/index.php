@@ -34,6 +34,8 @@ $nomera = $nomer->getAllNomers();
                 <li><a href="#nomera">Номера</a></li>
                 <li><a href="#predlogi">Предложения</a></li>
                 <li><a href="#contact">Контакты</a></li>
+
+                <?= !empty($_SESSION['id_user']) ? '<li><a href="listBronUser.php">Заброненные номера</a></li>' : ""; ?>
             </ul>
         </nav>
         <div class="broninom_button">
@@ -81,9 +83,9 @@ $nomera = $nomer->getAllNomers();
                     клиентов
                 </li>
             </ul>
-            <button class="main_button">
-                Забронировать номер
-            </button>
+<!--            <button class="main_button">-->
+<!--                Забронировать номер-->
+<!--            </button>-->
         </div>
     </div>
 </section>
