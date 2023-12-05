@@ -29,7 +29,7 @@ session_start();
 <header>
     <div class="container" id="glavnai">
         <div class="logo">
-            <a href="admin.php"><img src="../img/logo.jpg" alt="Grand Atlee"></a>
+            <a href="index.php"><img src="../img/logo.jpg" alt="Grand Atlee"></a>
         </div>
         <nav>
             <ul>

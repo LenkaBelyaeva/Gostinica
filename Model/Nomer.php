@@ -36,6 +36,8 @@ class Nomer
         $nomer = mysqli_query((new Config())->connectMySql(), $query);
 
         if ($nomer) {
+            session_start();
+            $_SESSION['notDeleteNomer'] = 0;
             header('Location: http://Gostinica/view/admin.php', true, 301);
             exit();
         } else {
@@ -58,6 +60,8 @@ class Nomer
         $nomer = mysqli_query((new Config())->connectMySql(),$query);
 
         if ($nomer) {
+            session_start();
+            $_SESSION['notDeleteNomer'] = 0;
             header('Location: http://Gostinica/view/admin.php', true, 301);
             exit();
         } else {
@@ -79,6 +83,8 @@ class Nomer
         $nomer = mysqli_query((new Config())->connectMySql(),$query);
 
         if ($nomer) {
+            session_start();
+            $_SESSION['notDeleteNomer'] = 0;
             header('Location: http://Gostinica/view/admin.php', true, 301);
             exit();
         } else {

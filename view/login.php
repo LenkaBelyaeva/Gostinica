@@ -46,10 +46,10 @@ endif;
         <!--            </nav>-->
         <div class="broninom_button">
             <!--               <button><a href="Nomer/form.php">Забронировать</a></button>-->
-            <a style="cursor: pointer" href="">
+            <a style="cursor: pointer" href="login.php">
                 <button>Войти</button>
             </a>
-            <a style="cursor: pointer" href="">
+            <a style="cursor: pointer" href="register.php">
                 <button>Регистрация</button>
             </a>
         </div>
@@ -68,7 +68,7 @@ endif;
         </div>
     <?php
     endif; ?>
-    <form style="margin-top: 20px" class="container form" action="" method="post">
+    <form style="margin-top: 20px" class="container form" action="" method="post" autocomplete="off">
         <label class="form-label" style="font-size: 30px" for="login">Логин</label>
         <input style="width: 500px" class="form-control" type="text" id="login" name="login">
 

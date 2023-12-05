@@ -43,7 +43,7 @@ $nomera = $nomer->getAllNomers();
 
             <?php
             if (!empty($_SESSION['id_user'])): $klient = $klient->findKlient($_SESSION['id_user']) ?>
-                <?= $klient['first_name'] . ' ' . $klient['last_name'] ?>
+                <?= $klient['last_name'] ?>
                 <form action="logout.php" method="post">
                     <button type="submit">Выход</button>
                 </form>

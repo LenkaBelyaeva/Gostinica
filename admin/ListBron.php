@@ -1,10 +1,13 @@
 <?php
 
+session_start();
     require_once('../autoload/autoloadForInFile.php');
 
     use Model\Nomer;
     use Model\Klient;
     use Model\Bronirovanie;
+
+    $_SESSION['notDeleteNomer'] = 0;
 
     $nomer = new Bronirovanie();
     $nomer = $nomer->getAllBron();
@@ -28,7 +31,7 @@
 <header>
     <div class="container" id="glavnai">
         <div class="logo">
-            <a href="admin.php"><img src="../img/logo.jpg" alt="Grand Atlee"></a>
+            <a href="../view/admin.php""><img src="../img/logo.jpg" alt="Grand Atlee"></a>
         </div>
         <nav>
             <ul>

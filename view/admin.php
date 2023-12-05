@@ -1,11 +1,12 @@
 <?php
 
-    require_once('../autoload/autoloadForInFile.php');
+session_start();
+require_once('../autoload/autoloadForInFile.php');
 
-    use Model\Nomer;
+use Model\Nomer;
 
-    $nomer = new Nomer();
-    $nomer = $nomer->getAllNomers();
+$nomer = new Nomer();
+$nomer = $nomer->getAllNomers();
 ?>
 
 <!doctype html>
@@ -44,7 +45,21 @@
 
 <div class="container" style="margin-top: 50px">
 
-    <a href="../Nomer/form.php"><button class="btn btn-success">Добавить номер</button></a>
+
+    <?php
+
+    if (!empty($_SESSION['notDeleteNomer'])):
+        if ($_SESSION['notDeleteNomer'] == 1): ?>
+            <div class="alert alert-danger" role="alert">
+                Невозможно удалить номер, так как он используется в бронировании
+            </div>
+        <?php
+        endif;
+    endif; ?>
+
+    <a href="../Nomer/form.php">
+        <button class="btn btn-success">Добавить номер</button>
+    </a>
 
     <table class="table">
         <tr>
@@ -54,7 +69,8 @@
             <th class="col">Стоимость</th>
             <th class="col">Фото</th>
         </tr>
-        <?php while ($value = mysqli_fetch_array($nomer)): ?>
+        <?php
+        while ($value = mysqli_fetch_array($nomer)): ?>
             <tr>
                 <td><?= $value['name'] ?></td>
                 <td><?= $value['nomer'] ?></td>
@@ -74,7 +90,8 @@
                     </form>
                 </td>
             </tr>
-        <?php endwhile; ?>
+        <?php
+        endwhile; ?>
     </table>
 </div>
 </body>

@@ -68,7 +68,7 @@ endif;
         </div>
     <?php
     endif; ?>
-    <form style="margin-top: 20px" class="container form" action="" method="post">
+    <form style="margin-top: 20px" class="container form" action="" method="post" autocomplete="off">
         <label class="form-label" style="font-size: 30px" for="last_name">Фамилия</label>
         <input style="width: 500px" class="form-control" type="text" id="last_name" name="last_name">
 

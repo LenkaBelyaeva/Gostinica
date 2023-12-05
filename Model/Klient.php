@@ -20,6 +20,7 @@ class Klient
         if (!empty($query)) {
             session_start();
             $_SESSION['id_user'] = $query['id'];
+            $_SESSION['notDeleteNomer'] = 0;
             if ($query['login'] == 'admin'){
                 header('Location: http://Gostinica/view/admin.php', true, 301);
                 exit();
@@ -54,8 +55,6 @@ class Klient
 
     public function register($request): bool
     {
-        require_once(self::DB);
-
         if (!empty($this->findKlientByLogin($request['login']))) {
             return false;
         } else {
