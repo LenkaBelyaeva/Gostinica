@@ -42,7 +42,7 @@ endif;
 <header>
     <div class="container" id="glavnai">
         <div class="logo">
-            <a href="index.php"><img src="../img/logo.jpg" alt="Grand Atlee"></a>
+            <a href="../view/index.php"><img src="../img/logo.jpg" alt="Grand Atlee"></a>
         </div>
         <nav>
             <ul>
@@ -71,10 +71,10 @@ endif;
         <input type="hidden" name="id_nomer" value="<?= $_POST['id_nomer'] ?>">
 
         <label class="form-label" style="font-size: 30px" for="zaezd">Заезд</label>
-        <input style="width: 500px" class="form-control" type="date" id="zaezd" name="zaezd">
+        <input style="width: 500px" class="form-control" type="date" id="zaezd" name="zaezd" required>
 
         <label class="form-label" style="font-size: 30px" for="viezd">Выезд</label>
-        <input style="width: 500px" width="10" class="form-control" type="date" id="viezd" name="viezd">
+        <input style="width: 500px" width="10" class="form-control" type="date" id="viezd" name="viezd" required>
 
         <button style="margin-top: 20px; font-size: 25px" class="btn btn-primary">Забронировать</button>
     </form>
